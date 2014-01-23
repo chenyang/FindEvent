@@ -24,7 +24,7 @@
 		mod.deps = _.flatten([filter, directive, controller, service]);
 	});  
 
-	var appDeps = ['ngCookies', 'ngGrid','ui.bootstrap', 'global.filter', 
+	var appDeps = ['ngCookies', 'ngRoute', 'ngGrid','ui.bootstrap', 'global.filter', 
 	               'webStorageModule', 'google-maps'];
 
 	_.each(modules, function(mod){

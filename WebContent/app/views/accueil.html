@@ -82,7 +82,7 @@
 			</div>
 			
 			<!-- button ajouter -->
-			<ul ui-if="stylesByUser.length<4">
+			<ul ng-if="stylesByUser.length<4">
 				<div class="dropdown" ng-controller="HeaderCtrl">
 			 		<a ng-click="getAvailables()" title="ajouter un style" class="acenter dropdown-toggle 
 			 		btn btn-success btn-small margin-medium">
@@ -119,14 +119,15 @@
 			</div> -->
 			
 			<div>
-				<a class="btn btn-primary margin-medium" ng-click="afficherArtistesByGenre()">
-				<i class="fa fa-users"></i> Afficher les artistes par genre
+				<a class="btn btn-primary margin-medium" ng-click="afficherEvenementsEnDetaille()">
+				<i class="fa fa-calendar"></i> Afficher événements en détail 
 				</a>
 			</div>
 			
+						
 			<div>
-				<a class="btn btn-primary margin-medium" ng-click="afficherEvenementsEnDetaille()">
-				<i class="fa fa-calendar"></i> Afficher événements en détail 
+				<a ng-disabled="stylesByUser==0" class="btn btn-primary margin-medium" ng-click="afficherArtistesByGenre()">
+				<i class="fa fa-users"></i> Afficher les artistes par genre
 				</a>
 			</div>
 

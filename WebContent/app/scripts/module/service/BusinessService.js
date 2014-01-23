@@ -13,6 +13,10 @@
 			
 			getSampleBusiness:function(){
 				return cmWSFacade.cmWSGet('BusinessService/getSampleBusinessObjects', false);
+			}, 
+			
+			getBusinessByRequest: function(content){
+				return cmWSFacade.cmWSPost('BusinessService/getBusinessByRequest', content);
 			}
 
 

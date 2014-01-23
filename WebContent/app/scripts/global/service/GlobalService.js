@@ -67,6 +67,10 @@
 			 {  when:"/business", 
 				 templateUrl:"views/business.html", 
 				 controller:"BusinessCtrl"
+			 }, 
+			 {  when:"/requete", 
+				 templateUrl:"views/requete.html", 
+				 controller:"RequeteCtrl"
 			 }
 
 			 ]);
