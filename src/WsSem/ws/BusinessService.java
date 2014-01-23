@@ -3,6 +3,7 @@ package WsSem.ws;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -17,6 +18,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.GET;
 
+import org.codehaus.jettison.json.JSONObject;
 import org.openjena.atlas.json.JsonObject;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -52,6 +54,30 @@ public class BusinessService {
 			return stringResult;
 		}
 	}
+	
+	
+	@Path("/getBusinessByRequest")
+	@POST
+	@Consumes(value={MediaType.APPLICATION_JSON})
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getBusinessByRequest(String query){
+		
+		String stringResult = "";
+		
+		try {
+			JSONObject jObject = new JSONObject(query.trim());
+			String str_sparql = (String) jObject.get("sparql");
+			List<JsonBusinessObject> listeBusiness = new ArrayList<JsonBusinessObject>();
+			listeBusiness = QueryEndpointFactory.getBusinessByRequest(str_sparql);
+			stringResult = JsonResultFactory.getJsonResultFactory().createJsonResultString("200", "success", listeBusiness);
+		} catch (Exception e) {
+			e.printStackTrace();
+			stringResult = JsonResultFactory.getJsonResultFactory().createJsonResultString("500", "fail", null);
+		}
+		
+		return stringResult;
+	}
+	
 
 
 	@Path("/addAnnotation")

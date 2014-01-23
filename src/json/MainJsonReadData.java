@@ -24,7 +24,7 @@ public class MainJsonReadData {
 
 	private static String sCibulQuery = "https://api.cibul.net/v1/events?what=concert&lat=%s&lng=%s&radius=%d&lang=fr&key=4477e6eb9372ce28ab421ecb41834bb7";
 	private static String sBandsInTownQuery = "http://api.bandsintown.com/events/search?location=%s&radius=%d&format=json&app_id=MusicEvents";
-	private static String sSeatgeekQuery = "http://api.seatgeek.com/2/events?venue.city=%s";
+	//private static String sSeatgeekQuery = "http://api.seatgeek.com/2/events?venue.city=%s";
 	// http://api-sandbox.seatwave.com/v2/discovery/events?apikey={apiKey}&siteId={siteid}&pgnumber={pageNumber}&pgsize={pageSize}&what={what}&where={where}&when_from={whenFrom}&when_to={whenTo}&max_price={maxPrice}&eventsWithoutTix={eventsWithoutTix}
 	private static String sSeatwaveQuery = "http://api-sandbox.seatwave.com/v2/discovery/events?apikey=20a22ad8eba6459896e64fe643399304&where=%s&eventsWithoutTix=true";
 	private static String sGigatoolsQuery = "http://api.gigatools.com/city.json?cities[]=%s&api_key=39c00a17acbc3be810";
@@ -43,7 +43,7 @@ public class MainJsonReadData {
 		
 		result = JsonReader.read(new CibulReader(), String.format(sCibulQuery, qp.getLatitude(), qp.getLongitude(), 3000));
 		result.addAll(JsonReader.read(new BandsInTownReader(), String.format(sBandsInTownQuery, qp.getCity(), 10)));
-		result.addAll(JsonReader.read(new SeatgeekReader(), String.format(sSeatgeekQuery, qp.getCity())));
+		//result.addAll(JsonReader.read(new SeatgeekReader(), String.format(sSeatgeekQuery, qp.getCity())));
 		result.addAll(JsonReader.read(new SeatwaveReader(), String.format(sSeatwaveQuery, qp.getCity())));
 		//result.addAll(JsonReader.read(new CustomReader(), sCustomQuery));
 		return result;

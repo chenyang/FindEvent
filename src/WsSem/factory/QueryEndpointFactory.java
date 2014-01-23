@@ -110,7 +110,7 @@ public class QueryEndpointFactory{
 		sWhere=sWhere + "OPTIONAL {?databusiness foaf:name ?nom}"+ CRLF;
 		sQueries = sQueries+ "WHERE { "+sWhere+" } ";
 			 
-		//System.out.println(sQueries);	  	  
+		System.out.println(sQueries);	  	  
 		qexec = QueryExecutionFactory.create(sQueries, m);
 		try {	             
 				rs = qexec.execSelect() ;
@@ -139,6 +139,45 @@ public class QueryEndpointFactory{
 		return listeBusiness;
 		
 	}
+	
+	
+	//Requette Business trouve les évènements annotés (Dynamique)
+		public static List<JsonBusinessObject> getBusinessByRequest(String sQueries){
+			
+			String sPrefix = createPrefix();
+			List<JsonBusinessObject> listeBusiness = new ArrayList<JsonBusinessObject>();
+			Model m = createMyModel();
+			String sSelect, sFilter, sWhere ="";
+			ResultSet rs;
+			QueryExecution qexec;
+			
+			String sQueryFinal = sPrefix+sQueries;
+			//System.out.println(sQueries);	  	  
+			qexec = QueryExecutionFactory.create(sQueryFinal, m);
+			try {	             
+					rs = qexec.execSelect() ;
+					while(rs.hasNext())
+					{
+						QuerySolution soln = rs.nextSolution();
+						JsonBusinessObject item = new JsonBusinessObject();
+						if(soln.get("?numAnno")!=null)item.setNumAnno(Integer.parseInt(soln.get("?numAnno").toString()));
+						if(soln.get("?tagg")!=null)item.setTag(soln.get("?tagg").toString());
+						if(soln.get("?annotation")!=null)item.setAnnotation(soln.get("?annotation").toString());
+						if(soln.get("?event")!=null)item.setEvent(soln.get("?event").toString());
+						if(soln.get("?date")!=null)item.setDate(soln.get("?date").toString());
+						if(soln.get("?lat")!=null)item.setLat(soln.get("?lat").toString());
+						if(soln.get("?lgt")!=null)item.setLgt(soln.get("?lgt").toString());
+						if(soln.get("?nom")!=null)item.setNom(soln.get("?nom").toString());
+						if(soln.get("?mail")!=null)item.setMail(soln.get("?mail").toString());
+						listeBusiness.add(item);
+					}
+			 }
+			 finally {
+	              qexec.close() ;
+	         }
+			return listeBusiness;
+		}
+	
 	
 	
 	
