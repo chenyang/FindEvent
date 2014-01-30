@@ -29,7 +29,7 @@ public class UserLogic {
 		q.setParameter(1, username);
 		List<Style> styles = q.getResultList();
 		
-		em.close();
+		//em.close();
 		return styles;
 	}
 	
@@ -50,7 +50,7 @@ public class UserLogic {
 		q.setParameter(1, username);
 		List<Style> styles = q.getResultList();
 		
-		em.close();
+		//em.close();
 		return styles;
 		
 	}
