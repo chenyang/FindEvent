@@ -13,7 +13,7 @@ import javax.ws.rs.core.UriInfo;
 import exception.WebServiceException;
 import Tools.Tools;
 import WsSem.factory.JsonResultGenerator;
-import WsSem.factory.QueryEndpointFactory;
+import WsSem.factory.QueryEndpointGenerator;
 import WsSem.model.JsonAlbum;
 import WsSem.model.JsonArtist;
 import WsSem.model.JsonEvent;
@@ -35,7 +35,7 @@ public class EventService {
 		List<JsonAlbum> listeAlbum = new ArrayList<JsonAlbum>();
 		String stringResult = "";
 		try{//Normally Here can catch nothing, exceptions have been catched in getAlbumsByArtiste
-			listeAlbum = QueryEndpointFactory.getAlbumsByArtiste(idJamendo, artistName);
+			listeAlbum = QueryEndpointGenerator.getAlbumsByArtiste(idJamendo, artistName);
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
@@ -89,7 +89,7 @@ public class EventService {
 		String stringResult = "";
 
 		try{//Normally here will catch nothing since in QueryEndPoint, have already catched JenaQuery Exception in 3 cases
-			listeArtistes = QueryEndpointFactory.getArtistesByGenres(genre1, genre2, genre3, genre4);
+			listeArtistes = QueryEndpointGenerator.getArtistesByGenres(genre1, genre2, genre3, genre4);
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
@@ -118,7 +118,7 @@ public class EventService {
 		String genre = "";
 
 		try{
-			eventList=QueryEndpointFactory.getAllEvents(lat, lgt, radius, city, genre);
+			eventList=QueryEndpointGenerator.getAllEvents(lat, lgt, radius, city, genre);
 			stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("200", "success", eventList);
 		}catch (WebServiceException e){
 			e.printStackTrace();

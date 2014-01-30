@@ -27,7 +27,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import business.BusinessModelManip;
 import WsSem.factory.JsonResultGenerator;
-import WsSem.factory.QueryEndpointFactory;
+import WsSem.factory.QueryEndpointGenerator;
 import WsSem.model.JsonBusinessObject;
 import WsSem.model.Style;
 import WsSem.model.User;
@@ -45,7 +45,7 @@ public class BusinessService {
 		String stringResult = "";
 		List<JsonBusinessObject> listeBusiness = new ArrayList<JsonBusinessObject>();
 		try{
-			listeBusiness = QueryEndpointFactory.getSampleBusinessEvent();
+			listeBusiness = QueryEndpointGenerator.getSampleBusinessEvent();
 			stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("200", "success", listeBusiness);
 		}catch(Exception e){
 			e.printStackTrace();
@@ -68,7 +68,7 @@ public class BusinessService {
 			JSONObject jObject = new JSONObject(query.trim());
 			String str_sparql = (String) jObject.get("sparql");
 			List<JsonBusinessObject> listeBusiness = new ArrayList<JsonBusinessObject>();
-			listeBusiness = QueryEndpointFactory.getBusinessByRequest(str_sparql);
+			listeBusiness = QueryEndpointGenerator.getBusinessByRequest(str_sparql);
 			stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("200", "success", listeBusiness);
 		} catch (Exception e) {
 			e.printStackTrace();

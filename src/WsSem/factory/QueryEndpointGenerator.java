@@ -21,7 +21,7 @@ import exception.WebServiceException;
 import Tools.Tools;
 import WsSem.model.*
 ;
-public class QueryEndpointFactory{
+public class QueryEndpointGenerator{
 
 	private final static String CRLF = System.getProperty("line.separator") ;
 	private static final String serviceJamendo = "http://dbtune.org/jamendo/sparql/";
