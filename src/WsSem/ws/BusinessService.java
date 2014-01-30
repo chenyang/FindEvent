@@ -26,7 +26,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import business.BusinessModelManip;
-import WsSem.factory.JsonResultFactory;
+import WsSem.factory.JsonResultGenerator;
 import WsSem.factory.QueryEndpointFactory;
 import WsSem.model.JsonBusinessObject;
 import WsSem.model.Style;
@@ -46,10 +46,10 @@ public class BusinessService {
 		List<JsonBusinessObject> listeBusiness = new ArrayList<JsonBusinessObject>();
 		try{
 			listeBusiness = QueryEndpointFactory.getSampleBusinessEvent();
-			stringResult = JsonResultFactory.getJsonResultFactory().createJsonResultString("200", "success", listeBusiness);
+			stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("200", "success", listeBusiness);
 		}catch(Exception e){
 			e.printStackTrace();
-			stringResult = JsonResultFactory.getJsonResultFactory().createJsonResultString("500", "fail", null);
+			stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("500", "fail", null);
 		}finally{
 			return stringResult;
 		}
@@ -69,10 +69,10 @@ public class BusinessService {
 			String str_sparql = (String) jObject.get("sparql");
 			List<JsonBusinessObject> listeBusiness = new ArrayList<JsonBusinessObject>();
 			listeBusiness = QueryEndpointFactory.getBusinessByRequest(str_sparql);
-			stringResult = JsonResultFactory.getJsonResultFactory().createJsonResultString("200", "success", listeBusiness);
+			stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("200", "success", listeBusiness);
 		} catch (Exception e) {
 			e.printStackTrace();
-			stringResult = JsonResultFactory.getJsonResultFactory().createJsonResultString("500", "fail", null);
+			stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("500", "fail", null);
 		}
 		
 		return stringResult;
@@ -93,19 +93,19 @@ public class BusinessService {
 		try {
 			obj = mapper.readValue(jsonobj, JsonBusinessObject.class);
 			BusinessModelManip.addBusinessObject(obj);
-			stringResult = JsonResultFactory.getJsonResultFactory().createJsonResultString("200", "success", null);
+			stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("200", "success", null);
 		} catch (JsonParseException e1) {
 			e1.printStackTrace();
-			stringResult = JsonResultFactory.getJsonResultFactory().createJsonResultString("500", "fail", null);
+			stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("500", "fail", null);
 		} catch (JsonMappingException e1) {
 			e1.printStackTrace();
-			stringResult = JsonResultFactory.getJsonResultFactory().createJsonResultString("500", "fail", null);
+			stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("500", "fail", null);
 		} catch (IOException e1) {
 			e1.printStackTrace();
-			stringResult = JsonResultFactory.getJsonResultFactory().createJsonResultString("500", "fail", null);
+			stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("500", "fail", null);
 		}catch(Exception e){
 			e.printStackTrace();
-			stringResult = JsonResultFactory.getJsonResultFactory().createJsonResultString("500", "fail", null);
+			stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("500", "fail", null);
 		}
 
 		return stringResult;

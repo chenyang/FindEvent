@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.GET;
 
-import WsSem.factory.JsonResultFactory;
+import WsSem.factory.JsonResultGenerator;
 import WsSem.model.Style;
 import WsSem.model.User;
 
@@ -30,7 +30,7 @@ public class AccueilService {
 		Query q = em.createNativeQuery("SELECT * FROM Style s WHERE 1=1");
 		//Query q = em.createQuery("SELECT distinct s FROM Style s WHERE 1=1", Style.class); this is better
 		List<Style> styles = q.getResultList();
-		String stringResult = JsonResultFactory.getJsonResultFactory().createJsonResultString("200", "success", styles);
+		String stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("200", "success", styles);
 		return stringResult;				
 	}
 
@@ -55,10 +55,10 @@ public class AccueilService {
 			Query q = em.createQuery(jpql, Style.class);
 			q.setParameter(1, username);
 			List<Style> styles = q.getResultList();
-			stringResult = JsonResultFactory.getJsonResultFactory().createJsonResultString("200", "success", styles);
+			stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("200", "success", styles);
 		}catch(Exception e){
 			e.printStackTrace();
-			stringResult = JsonResultFactory.getJsonResultFactory().createJsonResultString("500", "fail", null);
+			stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("500", "fail", null);
 		}finally{
 			em.close();
 			return stringResult;
@@ -81,10 +81,10 @@ public class AccueilService {
 			Query q = em.createQuery(jpql, Style.class);
 			q.setParameter(1, username);
 			List<Style> styles = q.getResultList();
-			stringResult = JsonResultFactory.getJsonResultFactory().createJsonResultString("200", "success", styles);
+			stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("200", "success", styles);
 		}catch(Exception e){
 			e.printStackTrace();
-			stringResult = JsonResultFactory.getJsonResultFactory().createJsonResultString("500", "fail", null);
+			stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("500", "fail", null);
 		}finally{
 			em.close();
 			return stringResult;
@@ -119,11 +119,11 @@ public class AccueilService {
 			Query q = em.createQuery(jpql, Style.class);
 			q.setParameter(1, username);
 			List<Style> styles = q.getResultList();
-			stringResult = JsonResultFactory.getJsonResultFactory().createJsonResultString("200", "success", styles);
+			stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("200", "success", styles);
 
 		}catch(Exception e){
 			e.printStackTrace();
-			stringResult = JsonResultFactory.getJsonResultFactory().createJsonResultString("500", "fail", null);
+			stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("500", "fail", null);
 		}finally{
 			em.close();
 			return stringResult;
@@ -157,10 +157,10 @@ public class AccueilService {
 			Query q = em.createQuery(jpql, Style.class);
 			q.setParameter(1, username);
 			List<Style> styles = q.getResultList();
-			stringResult = JsonResultFactory.getJsonResultFactory().createJsonResultString("200", "success", styles);
+			stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("200", "success", styles);
 		}catch(Exception e){
 			e.printStackTrace();
-			stringResult = JsonResultFactory.getJsonResultFactory().createJsonResultString("500", "fail", null);
+			stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("500", "fail", null);
 		}finally{
 			em.close();
 			return stringResult;

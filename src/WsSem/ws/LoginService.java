@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import WsSem.factory.JsonResultFactory;
+import WsSem.factory.JsonResultGenerator;
 import WsSem.model.Style;
 import WsSem.model.User;
 
@@ -39,9 +39,9 @@ public class LoginService {
 
 		List<User> users = q.getResultList();
 		if(q.getResultList().size()>0){
-			return JsonResultFactory.getJsonResultFactory().createJsonResultString("200", "success", users);	
+			return JsonResultGenerator.getJsonResultFactory().createJsonResultString("200", "success", users);	
 		}else{
-			return JsonResultFactory.getJsonResultFactory().createJsonResultString("200", "fail", null);
+			return JsonResultGenerator.getJsonResultFactory().createJsonResultString("200", "fail", null);
 		}
 	}
 

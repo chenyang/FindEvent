@@ -24,16 +24,16 @@ import WsSem.model.*
 public class QueryEndpointFactory{
 
 	private final static String CRLF = System.getProperty("line.separator") ;
-	public static final String serviceJamendo = "http://dbtune.org/jamendo/sparql/";
-	public static final String serviceMusicBrainz = "http://dbtune.org/musicbrainz/sparql/";
-	public static final String serviceDBpedia = "http://www.dbpedia.org/sparql";
+	private static final String serviceJamendo = "http://dbtune.org/jamendo/sparql/";
+	private static final String serviceMusicBrainz = "http://dbtune.org/musicbrainz/sparql/";
+	private static final String serviceDBpedia = "http://www.dbpedia.org/sparql";
 //	private final static String servicePath1 = "file:rdf_model/meo-data.rdf";
 //	private final static String servicePath2 = "file:rdf_model/meo-data.rdf";
 	private static String sPrefix;
 	private static QueryExecution qexec;
 	//private static Model m1, m2, m;
 
-	public static String createPrefix(){
+	private static String createPrefix(){
 		sPrefix ="PREFIX rdf: <" + RDF.getURI() + ">" + CRLF;
 		sPrefix =sPrefix+ "PREFIX mo:<http://purl.org/ontology/mo/>" + CRLF;
 		sPrefix =sPrefix+ "PREFIX dce: <http://purl.org/dc/elements/1.1/>" + CRLF;
@@ -73,11 +73,11 @@ public class QueryEndpointFactory{
 	}
 
 
-	public static Model createMyModel(){
+	private static Model createMyModel(){
 		return BusinessModelCreation.getModel();
 	}
 
-	public static void closeQueryExe(){
+	private static void closeQueryExe(){
 		qexec.close();
 	}
 	

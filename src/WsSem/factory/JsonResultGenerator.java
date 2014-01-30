@@ -16,16 +16,16 @@ import org.codehaus.jackson.map.ObjectMapper;
 import WsSem.model.JsonResult;
 import WsSem.model.Style;
 
-public class JsonResultFactory {
+public class JsonResultGenerator {
 
-	private JsonResultFactory() {
+	private JsonResultGenerator() {
 	}
 	
-	private static JsonResultFactory instance = null;
+	private static JsonResultGenerator instance = null;
 	
-	public static JsonResultFactory getJsonResultFactory(){
+	public static JsonResultGenerator getJsonResultFactory(){
 		if(instance==null){
-			instance = new JsonResultFactory();
+			instance = new JsonResultGenerator();
 		}
 		return instance;
 	}

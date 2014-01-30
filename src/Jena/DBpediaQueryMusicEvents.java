@@ -10,7 +10,7 @@ import com.hp.hpl.jena.vocabulary.RDF;
 public class DBpediaQueryMusicEvents{
 
 	public static final String CRLF = System.getProperty("line.separator") ;
-	public static final String service = "http://www.dbpedia.org/sparql";
+	public static final String service = "http://www.dbpedia.org/sparql/";
      
 	public static void main(String[] args) {
 		 		  		

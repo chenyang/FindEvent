@@ -12,7 +12,7 @@ import javax.ws.rs.core.UriInfo;
 
 import exception.WebServiceException;
 import Tools.Tools;
-import WsSem.factory.JsonResultFactory;
+import WsSem.factory.JsonResultGenerator;
 import WsSem.factory.QueryEndpointFactory;
 import WsSem.model.JsonAlbum;
 import WsSem.model.JsonArtist;
@@ -40,9 +40,9 @@ public class EventService {
 			e.printStackTrace();
 		}finally{
 			if(listeAlbum.size()==0){
-				stringResult = JsonResultFactory.getJsonResultFactory().createJsonResultString("500", "fail", null);
+				stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("500", "fail", null);
 			}else{
-				stringResult = JsonResultFactory.getJsonResultFactory().createJsonResultString("200", "success", listeAlbum);
+				stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("200", "success", listeAlbum);
 			}
 		}
 		return stringResult;
@@ -94,9 +94,9 @@ public class EventService {
 			e.printStackTrace();
 		}finally{
 			if(listeArtistes.size()==0){
-				stringResult = JsonResultFactory.getJsonResultFactory().createJsonResultString("500", "fail", null);
+				stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("500", "fail", null);
 			}else{
-				stringResult = JsonResultFactory.getJsonResultFactory().createJsonResultString("200", "success", listeArtistes);
+				stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("200", "success", listeArtistes);
 			}
 		}
 		return stringResult;
@@ -119,10 +119,10 @@ public class EventService {
 
 		try{
 			eventList=QueryEndpointFactory.getAllEvents(lat, lgt, radius, city, genre);
-			stringResult = JsonResultFactory.getJsonResultFactory().createJsonResultString("200", "success", eventList);
+			stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("200", "success", eventList);
 		}catch (WebServiceException e){
 			e.printStackTrace();
-			stringResult = JsonResultFactory.getJsonResultFactory().createJsonResultString("500", "fail", eventList);
+			stringResult = JsonResultGenerator.getJsonResultFactory().createJsonResultString("500", "fail", eventList);
 		}finally{
 			//QueryEndpointFactory.closeQueryExe();
 		}

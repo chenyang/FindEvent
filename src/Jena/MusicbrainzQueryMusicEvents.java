@@ -68,6 +68,7 @@ public class MusicbrainzQueryMusicEvents{
 		  sWhere=sWhere + "OPTIONAL {?artist bio:event ?bio }";
 		 
 		  sQueries = sQueries+ "WHERE { "+sWhere+" } ";
+		  System.out.println(sQueries);
 	      QueryExecution qexec = QueryExecutionFactory.sparqlService(service, sQueries);
 		  try {	             
 				ResultSet rs = qexec.execSelect() ;
@@ -185,6 +186,8 @@ public class MusicbrainzQueryMusicEvents{
 			
 			 
 			  sQueries = sQueries+ "WHERE { "+sWhere+" } ";
+			  
+			  //System.out.println(sQueries);
 				 			  
 		      qexec = QueryExecutionFactory.sparqlService(service, sQueries);
 			  try {	             
