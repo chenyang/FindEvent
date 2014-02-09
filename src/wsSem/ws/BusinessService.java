@@ -23,7 +23,7 @@ import org.codehaus.jettison.json.JSONObject;
 import org.openjena.atlas.json.JsonObject;
 
 import tools.JsonResultGenerator;
-import wsSem.facade.QueryEndpointGenerator;
+import wsSem.facade.SparqlQueryEndpointFacade;
 import wsSem.logic.AnnotationLogic;
 import wsSem.model.JsonBusinessObject;
 import wsSem.model.Style;

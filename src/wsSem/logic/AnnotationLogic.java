@@ -10,20 +10,20 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import wsSem.facade.QueryEndpointGenerator;
+import wsSem.facade.SparqlQueryEndpointFacade;
 import wsSem.model.JsonBusinessObject;
 
 public class AnnotationLogic {
 	
 	public List<JsonBusinessObject> getSampleBusinessObjects(){
 		List<JsonBusinessObject> listeBusiness = new ArrayList<JsonBusinessObject>();
-		listeBusiness =  QueryEndpointGenerator.getSampleBusinessEvent();
+		listeBusiness =  SparqlQueryEndpointFacade.getSampleBusinessEvent();
 		return listeBusiness;
 	}
 	
 	public List<JsonBusinessObject> getBusinessByRequest(String sparql){
 		List<JsonBusinessObject> listeBusiness = new ArrayList<JsonBusinessObject>();
-		listeBusiness = QueryEndpointGenerator.getBusinessByRequest(sparql);
+		listeBusiness = SparqlQueryEndpointFacade.getBusinessByRequest(sparql);
 		return listeBusiness;
 	}
 	

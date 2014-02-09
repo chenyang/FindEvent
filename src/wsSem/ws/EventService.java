@@ -12,7 +12,7 @@ import javax.ws.rs.core.UriInfo;
 
 import tools.Tools;
 import tools.JsonResultGenerator;
-import wsSem.facade.QueryEndpointGenerator;
+import wsSem.facade.SparqlQueryEndpointFacade;
 import wsSem.logic.ArtistLogic;
 import wsSem.logic.EventLogic;
 import wsSem.model.JsonAlbum;
