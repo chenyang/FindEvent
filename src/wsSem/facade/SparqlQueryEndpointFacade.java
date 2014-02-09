@@ -21,7 +21,7 @@ import com.hp.hpl.jena.vocabulary.RDF;
 
 import exception.WebServiceException;
 
-public class QueryEndpointGenerator{
+public class SparqlQueryEndpointFacade{
 	private final static String CRLF = System.getProperty("line.separator") ;
 	private static final String serviceJamendo = "http://dbtune.org/jamendo/sparql/";
 	private static final String serviceMusicBrainz = "http://dbtune.org/musicbrainz/sparql/";
