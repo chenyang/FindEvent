@@ -32,8 +32,7 @@
 				             {field:'location.address', displayName:'Adresse', cellTemplate:'<span class="ngCellText">{{row.entity.location.address}}</span>'}, 
 				             {field:'', displayName:'Annotation', cellTemplate:'<div class="ngCellText acenter"><button class="btn btn-success" ng-click="open(row.entity)">Annoter</button></div>'}, 
 				             ]
-		}
-
+		};
 
 		$scope.init = function(){
 			//Get Liste evenements
@@ -45,9 +44,8 @@
 				console.log(data);
 				console.log(status);
 			});
-		}
-
-
+		};
+		
 		/**
 		 * Partie Annotation Modal
 		 */
@@ -65,7 +63,7 @@
 					lgt : $scope.longitude,
 					nom : $scope.$info_user.nom,
 					mail : $scope.$info_user.email	
-			}
+			};
 
 			var modalInstance = $modal.open({
 				scope:$scope,
@@ -75,9 +73,6 @@
 					event:function(){
 						return rowEntity.name;
 					}
-			/*	annotation:function(){
-						return $scope.annotation;
-					},*/ 
 				}
 			});
 
@@ -112,8 +107,6 @@
 				$modalInstance.dismiss('cancel');
 			};
 		};
-
-
 
 		//Methode a initialiser
 		$scope.init();

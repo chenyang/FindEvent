@@ -1,7 +1,6 @@
 (function(){
 	'use strict';
 	var mod = angular.module('global.service');
-
 	mod.factory('myHttpInterceptor', ['$q', '$window', '$rootScope', function ($q, $window, $rootScope) {
 		return function (promise) {
 			return promise.then(function (response, status) {
@@ -11,14 +10,11 @@
 					//console.log('spinnerOff with '+response.config.url);
 				}
 				return response;
-
-			}, function (response) {
+			}, function (response){
 				// do something on error
-				// todo hide the spinner
 				var alertObj = {type:'error', msg:'Erreurs serveur de STATUS:'+response.status};
 				$rootScope.$broadcast('alertOn', alertObj);
 				$rootScope.$broadcast('spinnerOff');
-
 				return $q.reject(response);
 			});
 		};
@@ -27,7 +23,6 @@
 	mod.config(['$httpProvider', function ($httpProvider) {
 		$httpProvider.responseInterceptors.push('myHttpInterceptor');
 	}]);
-
 
 	//Navigation
 	mod.constant('Navigation',
@@ -72,21 +67,15 @@
 				 templateUrl:"views/requete.html", 
 				 controller:"RequeteCtrl"
 			 }
-
 			 ]);
 
-
-	//web methodes Facade
+//	Web methodes Facade
 	mod.factory("cmWSFacade", 
-			['$http', 'serverRESTConfig','$rootScope', 
-			 function($http, serverRESTConfig, $rootScope){
-
+			['$http', 'serverRESTConfig','$rootScope', function($http, serverRESTConfig, $rootScope){
 				var compo_url= serverRESTConfig.protocal+
 				serverRESTConfig.domain+':'+
 				serverRESTConfig.port+
 				serverRESTConfig.context;
-
-
 				return {
 					cmWSGet:function(uri, cache){
 						$rootScope.$broadcast('spinnerOn');
@@ -109,7 +98,7 @@
 							data:content
 						});
 					}
-				}
+				};
 			}]);
 
 })();

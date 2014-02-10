@@ -4,10 +4,7 @@
 
 	module.controller('BusinessCtrl',  ['$scope', 'cmWSFacade', 'webStorage', 'BusinessService','$routeParams',
 	                                    function($scope, cmWSFacade, webStorage,BusinessService, $routeParams){
-
 		$scope.dataAnnotation = [];
-
-
 		$scope.gridOptions = {
 				data: 'dataAnnotation',
 				i18n:'fr',
@@ -30,7 +27,7 @@
 				             {field:'nom', displayName:'Nom'}, 
 				             {field:'mail', displayName:'contact Email'}
 				             ]
-		}
+		};
 
 		$scope.init = function(){
 			BusinessService.getSampleBusiness().success(function(data, status){
@@ -39,10 +36,9 @@
 				console.log(data);
 			});
 		};
-
+		
 		//Methode init
 		$scope.init();
-
 	}]);
 
 })();

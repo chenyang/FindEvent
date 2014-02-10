@@ -7,8 +7,6 @@
 		
 		$scope.$info_user = webStorage.session.get('$info_user');
 		$scope.dataGroupes = [];
-		
-		
 		$scope.gridOptions = {
 				data: 'dataGroupes',
 				i18n:'fr',
@@ -26,20 +24,16 @@
 				             {field:'genre', displayName:'Genre de musique'},
 				             {field:'seeAlso', displayName:'Link externe', cellTemplate:'template/templateGroupe.html'}, 
 				             ]
-		}
-		
+		};
 		
 		$scope.init = function(){
 			EvenementService.getGroupesByGenre($scope.$info_user.type_musique).success(function(data, status){
 				$scope.dataGroupes = data.binding;
 				console.log($scope.dataGroupes);
 			});
-		}
-		
+		};
 		
 		//Methode init
 		$scope.init();
-		
 	}]);
-
 })();

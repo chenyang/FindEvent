@@ -3,20 +3,16 @@
 
 	//permet d'utiliser underscore.string avec l'api d'underscore.js
 	_.mixin(_.string.exports());
-
 	var modules = [
 	               { nomModule: 'global', deps: [] },
 	               { nomModule: 'mod', deps: [] }
 	              ];
-
-
 	_.each(modules, function(mod){
 		var
 		filter = mod.nomModule + ".filter",
 		directive = mod.nomModule + ".directive",
 		controller = mod.nomModule + ".controller",
 		service = mod.nomModule + ".service";
-
 		angular.module(filter, []);
 		angular.module(directive, []);
 		angular.module(controller, []);
@@ -26,20 +22,15 @@
 
 	var appDeps = ['ngCookies', 'ngRoute', 'ngGrid','ui.bootstrap', 'global.filter', 
 	               'webStorageModule', 'google-maps'];
-
 	_.each(modules, function(mod){
 		appDeps.push(mod.deps);
 		appDeps = _.flatten(appDeps);
 	}); 
-
 	var app = angular.module('App', appDeps);
-
-	//??
+	
 	app.config(['$httpProvider', function ($httpProvider) {
 		delete $httpProvider.defaults.headers.common['X-Requested-With'];
 	}]);
-
-
 
 	//Configure route provider, route controller and template url
 	app.config(['$routeProvider','Navigation', function($routeProvider, Navigation) {
@@ -49,9 +40,4 @@
 			$routeProvider.otherwise({redirectTo:'/login'});
 		});
 	}]);
-	
 })();
-
-
-
-

@@ -16,6 +16,5 @@
     domain:'localhost',
     port:8080, 
     context:'/FindEvent/rest/'
-  });
-  
+  });  
 })();

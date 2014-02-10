@@ -8,22 +8,16 @@
 		//Par defaut:
 		$scope.spinner = false;
 
-
-		//Pour definir et assigner les variables globales
-
 		//info_user
 		$scope.$on('info_user', function(event, data){
 			if(webStorage.session.get('$info_user')==null){
 				webStorage.session.add('$info_user', data);
 			}
-
 			console.log(webStorage.session.get('$info_user'));
 		});
 
-
 		//info_geo
 		$scope.$on('info_geo', function(event, data){
-
 			if(_.isEmpty(data.city)){ //in case not found city
 				data = {
 						"ip":"162.38.218.204",
@@ -36,28 +30,22 @@
 						"country_name":"France"
 				}
 			}
-
 			webStorage.session.add('$info_geo', data);
 			console.log(webStorage.session.get('$info_geo'));
 		});
-
-
 
 		//La gestion de spinner
 		$scope.$on('spinnerOn', function(event, data){
 			$scope.spinner = true;
 			console.log('spinnerON');
 		});
-
 		$scope.$on('spinnerOff', function(event, data){
 			$scope.spinner = false;
 			console.log('spinnerOFF');
 		});
 
-
 		//La gestion de session
 		$scope.$on('$routeChangeStart', function(event, next, current){
-
 			//Si cas nouveau client ou business
 			if(next.$$route.controller=='NouveauCompteCtrl'||next.$$route.controller=='BusinessCtrl'
 				||next.$$route.controller=='RequeteCtrl'){
@@ -70,7 +58,6 @@
 				}
 			}
 		});
-
 	}]);
 
 })();

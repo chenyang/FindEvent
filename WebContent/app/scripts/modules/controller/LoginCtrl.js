@@ -5,29 +5,23 @@
 	module.controller('LoginCtrl', ['$scope', '$rootScope', '$location', 'cmWSFacade', 'LoginService', '$http',  
 	                                function($scope, $rootScope, $location, cmWSFacade, LoginService, $http){
 
-
 		$scope.loadAddresseInfo = function(){
 			$rootScope.$broadcast('spinnerOn');
 			return $http({
 				method:'JSONP', 
 				url:"http://freegeoip.net/json/?callback=JSON_CALLBACK"
 			});
-		};
-		
-		
+		};		
 		$scope.maPosition = function(position){
 			console.log(position);
 		};
-		
-		
 		
 		$scope.checkLogin = function(){
 			//function d'authentification
 			LoginService.checkLogin($scope.nom, $scope.pass).success(function(data, status){
 				if(data.result=='success'){
 					//aussi associer style du musique
-					$scope.type_musique = 'pop';
-					
+					$scope.type_musique = 'pop';			
 					$scope.$emit('info_user', {
 						email:data.binding[0].email,
 						nom : $scope.nom,
@@ -67,7 +61,6 @@
 						$location.path('/accueil');
 						
 					});
-
 				}else{// fause d'authentification
 					alert('Utilisateur not existe');
 				}
@@ -75,7 +68,5 @@
 				alert('Server error!');
 			});
 		}
-
 	}]);
-
 })();

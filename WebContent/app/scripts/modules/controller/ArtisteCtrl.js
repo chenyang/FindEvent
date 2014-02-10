@@ -4,11 +4,8 @@
 
 	module.controller('ArtisteCtrl',  ['$scope', '$location', 'cmWSFacade', 'webStorage', 'EvenementService',
 	                                   function($scope, $location, cmWSFacade, webStorage,EvenementService){
-
 		$scope.$info_user = webStorage.session.get('$info_user');
 		$scope.dataArtistes = [];
-
-
 		$scope.gridOptions = {
 				data: 'dataArtistes',
 				i18n:'fr',
@@ -29,7 +26,7 @@
 				             {field:'tag', displayName:'Genre musicale'}, 
 				             {field:'', displayName:'Albums', cellTemplate:'template/templateArtisteAlbum.html'}
 				             ]
-		}
+		};
 
 		$scope.init = function(){
 			EvenementService.getArtistesByGenre($scope.$info_user.type_musique).success(function(data, status){
@@ -39,18 +36,13 @@
 				var uniques = _.uniq($scope.dataTemp,function(item){
 				    return item.idJamendo;
 				});
-				
 				$scope.dataArtistes = uniques;
-
 			}).error(function(data, status){
 				console.log(data);
 			});
 		}
-
-
+		
 		//Methode init
 		$scope.init();
-
 	}]);
-
 })();

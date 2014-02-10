@@ -9,8 +9,7 @@
 		$scope.idArtiste = $routeParams.idArtiste;
 		$scope.artistName = $routeParams.artistName;
 		$scope.dataAlbums = [];
-
-
+		
 		$scope.gridOptions = {
 				data: 'dataAlbums',
 				i18n:'fr',
@@ -31,28 +30,21 @@
 				            	 cellTemplate:'<div class="acenter"><a href="{{row.entity.lienTelecharge}}"><i style="color:white; margin-top:25px" class="fa fa-2x fa-download"></i></a></div>'}, 
 				             {field:'tag', displayName:'Genre'}
 				            ]
-		}
+		};
 
 		$scope.init = function(){
 			EvenementService.getAlbumsByArtiste($scope.idArtiste).success(function(data, status){
 				$scope.dataTemp = data.binding;
-
-				//Supprimer le redundant de resultat
 				var uniques = _.uniq($scope.dataTemp,function(item){
 					return item.idJamendo;
 				});
-
 				$scope.dataAlbums = uniques;
-
 			}).error(function(data, status){
 				console.log(data);
 			});
-		}
-
-
+		};
+		
 		//Methode init
 		$scope.init();
-
 	}]);
-
 })();
